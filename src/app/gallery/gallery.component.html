@@ -6,8 +6,8 @@
     </ul>
     <article class="big-picture">
         <img [src]="pictures[currentIndex].src" [alt]="pictures[currentIndex].alt">
-        <div (click)="handlePrev(currentIndex)" *ngIf="currentIndex !== 0" class="left"><i class="arrow">&#60;</i></div>
-        <div (click)="handleNext(currentIndex)" *ngIf="currentIndex < pictures.length - 1" class="right"><i
-                class="arrow">&#62;</i></div>
+        <div (click)="handlePrev()" *ngIf="currentIndex !== 0" class="left"><i class="arrow">&#60;</i></div>
+        <div (click)="handleNext()" *ngIf="currentIndex < pictures.length - 1" class="right"><i class="arrow">&#62;</i>
+        </div>
     </article>
 </section>
