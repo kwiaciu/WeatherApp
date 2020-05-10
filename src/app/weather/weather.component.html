@@ -1,0 +1,11 @@
+<section>
+    <form action="">
+        <label for="input-city">City</label>
+        <input [(ngModel)]="location" id="input-city" name="city" type="text">
+        <button (click)="handleSearch()">Sprawdź</button>
+    </form>
+    <p *ngIf="weatherData">Temperatura: {{ calculate(weatherData.main.temp) }}C</p>
+</section>
+
+<!-- https://api.openweathermap.org/data/2.5/weather?q=Wrocław&appid=7bd0dc94a3212db6f91d5eb723443c2f
+ -->
