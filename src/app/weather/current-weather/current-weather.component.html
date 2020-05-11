@@ -1,1 +1,26 @@
-<p>current-weather works!</p>
+<article>
+    <div class="main">
+        <div class="left">
+            <h2>{{ City() }}</h2>
+            <h3>{{ Country() }}</h3>
+        </div>
+        <div class="right">
+            <img class="icon" *ngIf="CurrentWeatherIconSrc()" [src]="CurrentWeatherIconSrc()" alt="weather icon">
+            <div>
+                <h2> {{ CurrentTemperature() }}°C</h2>
+                <h3>{{ CurrentWeatherDesc() }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="details">
+        <ul>
+            <li>Apparent temperature: {{ CurrentFeelTemperature() }}°C</li>
+            <li>Pressure: {{ CurrentPressure() }} hPa</li>
+            <li>Humidity: {{ CurrentHumidity() }}%</li>
+            <li>Cloudiness: {{ CurrentClouds() }}%</li>
+            <li>Wind: {{ CurrentWind() }}m/s</li>
+            <li *ngIf="CurrentRain()">Rain: {{ CurrentRain() }}mm</li>
+            <li *ngIf="CurrentSnow()">Snow: {{ CurrentSnow() }}mm</li>
+        </ul>
+    </div>
+</article>

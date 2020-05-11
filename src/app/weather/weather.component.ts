@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { backgrounds } from './backgrounds';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-weather',
@@ -7,22 +9,35 @@ import { Component } from '@angular/core';
 })
 export class WeatherComponent {
   location = '';
-  weatherData = null;
+  backgroundURL = backgrounds;
+  currentWeatherData = null;
+  forecastWeatherData = null;
+  chosenBackground = null;
+  Background = () => {
+    this.chosenBackground = this.sanitizer.bypassSecurityTrustResourceUrl(
+      this.backgroundURL[this.currentWeatherData['weather'][0]['icon']]
+    );
+  };
 
-  constructor() {}
-
-  calculate(kelvin) {
-    return Math.ceil(kelvin - 273.15);
-  }
+  constructor(private sanitizer: DomSanitizer) {}
 
   handleSearch() {
-    console.log(this.location);
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${this.location}&appid=7bd0dc94a3212db6f91d5eb723443c2f`
+      `https://api.openweathermap.org/data/2.5/weather?q=${this.location}&units=metric&appid=7bd0dc94a3212db6f91d5eb723443c2f`
     )
       .then((response) => response.json())
       .then((data) => {
-        this.weatherData = data;
+        this.currentWeatherData = data;
+        this.Background();
+      })
+      .then(() => {
+        fetch(
+          `https://api.openweathermap.org/data/2.5/forecast?q=${this.location}&units=metric&appid=7bd0dc94a3212db6f91d5eb723443c2f`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            this.forecastWeatherData = data;
+          });
       });
   }
 }
