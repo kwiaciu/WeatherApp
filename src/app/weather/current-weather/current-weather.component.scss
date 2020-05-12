@@ -7,8 +7,9 @@ article {
   margin: auto;
   background-color: rgba(0, 0, 0, 0.7);
   padding: 1rem;
+
   .main {
-    margin: 1rem;
+    margin: 0 1rem 1rem 1rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -23,8 +24,9 @@ article {
       flex-direction: row;
     }
   }
+
   .details {
-    margin: 1rem;
+    margin: 0 1rem 0 1rem;
 
     ul {
       list-style: none;

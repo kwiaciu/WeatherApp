@@ -28,6 +28,8 @@ export class WeatherComponent {
       .then((response) => response.json())
       .then((data) => {
         this.currentWeatherData = data;
+        console.log(data);
+
         this.Background();
       })
       .then(() => {
@@ -37,6 +39,7 @@ export class WeatherComponent {
           .then((response) => response.json())
           .then((data) => {
             this.forecastWeatherData = data;
+            console.log(data);
           });
       });
   }
