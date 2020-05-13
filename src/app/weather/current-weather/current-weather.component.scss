@@ -1,8 +1,11 @@
+button {
+  margin: 5px;
+}
+
 article {
   display: flex;
   flex-direction: column;
   color: whitesmoke;
-  min-width: 600px;
   width: 600px;
   margin: auto;
   background-color: rgba(0, 0, 0, 0.7);
@@ -36,6 +39,30 @@ article {
       flex-wrap: wrap;
       height: 90px;
       line-height: 30px;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  article {
+    margin-left: auto;
+    margin-right: auto;
+    width: 85%;
+
+    .main {
+      flex-direction: column;
+      .left {
+        display: flex;
+        justify-content: start;
+        h3 {
+          padding-left: 0.5rem;
+        }
+      }
+    }
+    .details {
+      ul {
+        height: auto;
+      }
     }
   }
 }
