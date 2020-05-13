@@ -23,7 +23,7 @@ export class CurrentWeatherComponent {
   };
 
   CurrentWeatherIconSrc = () => {
-    return `/assets/icon/png/${this.potato['weather'][0]['icon']}.png`;
+    return `assets/icon/png/${this.potato['weather'][0]['icon']}.png`;
   };
 
   CurrentPressure = () => this.potato['main']['pressure'];
