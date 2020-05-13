@@ -43,7 +43,7 @@ export class FutureWeatherComponent {
   };
 
   ForecastWeatherIconSrc = (data) => {
-    return `../../../assets/icon/png/${data['weather'][0]['icon']}.png`;
+    return `../../assets/icon/png/${data['weather'][0]['icon']}.png`;
   };
 
   ForecastPressure = (data) => data['main']['pressure'];
