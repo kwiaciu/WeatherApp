@@ -10,17 +10,16 @@ import { DatePipe } from '@angular/common';
 export class FutureWeatherComponent {
   @Input() tomato: WeatherComponent;
 
-  today = new Date();
   //"dt_txt": "2020-05-13 06:00:00"
   checkDays = () => {
     const days = [];
+    const today = new Date();
+    if (today.getHours() < 12) {
+      today.setDate(today.getDate() - 1);
+    }
     for (let index = 1; index < 6; index++) {
       let day = new Date(
-        Date.UTC(
-          this.today.getFullYear(),
-          this.today.getMonth(),
-          this.today.getDate() + index
-        )
+        Date.UTC(today.getFullYear(), today.getMonth(), today.getDate() + index)
       );
       days.push(`${day.toISOString().slice(0, 10)} 12:00:00`);
     }

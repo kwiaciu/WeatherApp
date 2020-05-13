@@ -11,6 +11,7 @@
     </form>
 </section>
 <section>
+    <button *ngIf="currentWeatherData" (click)="reset()" mat-stroked-button color="accent">Check another</button>
     <app-current-weather *ngIf="currentWeatherData" [potato]="currentWeatherData"></app-current-weather>
 </section>
 <section>

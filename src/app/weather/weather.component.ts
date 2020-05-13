@@ -13,10 +13,23 @@ export class WeatherComponent {
   currentWeatherData = null;
   forecastWeatherData = null;
   chosenBackground = null;
-  Background = () => {
+  background = () => {
     this.chosenBackground = this.sanitizer.bypassSecurityTrustResourceUrl(
       this.backgroundURL[this.currentWeatherData['weather'][0]['icon']]
     );
+  };
+
+  handleErrors = (response) => {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    return response;
+  };
+
+  reset = () => {
+    this.location = '';
+    this.currentWeatherData = null;
+    this.forecastWeatherData = null;
   };
 
   constructor(private sanitizer: DomSanitizer) {}
@@ -25,12 +38,11 @@ export class WeatherComponent {
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${this.location}&units=metric&appid=7bd0dc94a3212db6f91d5eb723443c2f`
     )
+      .then((response) => this.handleErrors(response))
       .then((response) => response.json())
       .then((data) => {
         this.currentWeatherData = data;
-        console.log(data);
-
-        this.Background();
+        this.background();
       })
       .then(() => {
         fetch(
@@ -40,6 +52,10 @@ export class WeatherComponent {
           .then((data) => {
             this.forecastWeatherData = data;
             console.log(data);
+          })
+          .catch((error) => {
+            this.currentWeatherData = null;
+            console.warn(error);
           });
       });
   }
