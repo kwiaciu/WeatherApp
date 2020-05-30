@@ -1,3 +1,8 @@
-<app-weather></app-weather>
-<!-- <h1>Gallery</h1> -->
-<!-- <app-gallery></app-gallery> -->
+<header>
+    <ul>
+        <li routerLink='/' routerLinkActive="turquoise" [routerLinkActiveOptions]="{exact:true}">Gallery</li>
+        <li routerLink='/header' routerLinkActive="turquoise">Header</li>
+        <li routerLink='/weather' routerLinkActive="turquoise">Weather</li>
+    </ul>
+</header>
+<router-outlet></router-outlet>

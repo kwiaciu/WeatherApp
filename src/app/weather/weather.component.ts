@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { backgrounds } from './backgrounds';
 import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-weather',
@@ -32,23 +33,31 @@ export class WeatherComponent {
     this.forecastWeatherData = null;
   };
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(
+    private sanitizer: DomSanitizer,
+    private httpClient: HttpClient
+  ) {}
 
   handleSearch() {
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${this.location}&units=metric&appid=7bd0dc94a3212db6f91d5eb723443c2f`
-    )
-      .then((response) => this.handleErrors(response))
-      .then((response) => response.json())
+    this.httpClient
+      .get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${this.location}&units=metric&appid=7bd0dc94a3212db6f91d5eb723443c2f`
+      )
+      .toPromise()
+      // .then((response) => this.handleErrors(response))
+      // .then((response) => console.log(response))
+      // .then((response) => response.json())
       .then((data) => {
         this.currentWeatherData = data;
         this.background();
       })
       .then(() => {
-        fetch(
-          `https://api.openweathermap.org/data/2.5/forecast?q=${this.location}&units=metric&appid=7bd0dc94a3212db6f91d5eb723443c2f`
-        )
-          .then((response) => response.json())
+        this.httpClient
+          .get(
+            `https://api.openweathermap.org/data/2.5/forecast?q=${this.location}&units=metric&appid=7bd0dc94a3212db6f91d5eb723443c2f`
+          )
+          .toPromise()
+          // .then((response) => response.json())
           .then((data) => {
             this.forecastWeatherData = data;
             console.log(data);
