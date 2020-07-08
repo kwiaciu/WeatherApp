@@ -1,21 +1,22 @@
 <div class="vimeo-wrapper">
-    <iframe *ngIf="currentWeatherData" [src]="chosenBackground" frameborder="0" allowfullscreen></iframe>
+  <iframe *ngIf="currentWeatherData" [src]="chosenBackground" frameborder="0" allowfullscreen></iframe>
 </div>
 <section class="app-wrapper" *ngIf="!currentWeatherData">
-    <form class="entry" action="">
-        <mat-form-field class="">
-            <mat-label for="input-city">City</mat-label>
-            <input matInput [(ngModel)]="location" id="input-city" name="city" type="text">
-        </mat-form-field>
-        <button (click)="handleSearch()" mat-stroked-button color="accent">Find</button>
-    </form>
+  <form class="entry" action="">
+    <mat-form-field class="">
+      <mat-label for="input-city">City</mat-label>
+      <input matInput [(ngModel)]="location" id="input-city" name="city" type="text">
+    </mat-form-field>
+    <button (click)="handleSearch()" mat-stroked-button color="accent">Find</button>
+  </form>
 </section>
 <section>
-    <button *ngIf="currentWeatherData" (click)="reset()" mat-stroked-button color="accent">Check another</button>
-    <app-current-weather *ngIf="currentWeatherData" [potato]="currentWeatherData"></app-current-weather>
+  <button *ngIf="currentWeatherData" (click)="reset()" mat-stroked-button color="accent">Check another</button>
+  <app-current-weather *ngIf="currentWeatherData" [potato]="currentWeatherData"></app-current-weather>
 </section>
 <section>
-    <app-future-weather *ngIf="forecastWeatherData" [tomato]="forecastWeatherData"></app-future-weather>
+  <app-future-weather *ngIf="forecastWeatherData" [tomato]="forecastWeatherData" [test]="2">
+  </app-future-weather>
 </section>
 
 <!-- https://api.openweathermap.org/data/2.5/weather?q=Wrocław&appid=7bd0dc94a3212db6f91d5eb723443c2f
