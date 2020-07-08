@@ -22,7 +22,11 @@
 
   button {
     display: block;
+    margin: 0;
   }
+}
+button {
+  margin: 5px;
 }
 
 .vimeo-wrapper {
