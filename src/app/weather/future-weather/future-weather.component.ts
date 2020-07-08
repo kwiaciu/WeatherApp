@@ -9,7 +9,6 @@ import { DatePipe } from '@angular/common';
 })
 export class FutureWeatherComponent {
   @Input() tomato: WeatherComponent;
-  @Input() test: WeatherComponent;
 
   //"dt_txt": "2020-05-13 06:00:00"
   checkDays = () => {
@@ -55,7 +54,5 @@ export class FutureWeatherComponent {
 
   ForecastWind = (data) => data['wind']['speed'];
 
-  constructor() {
-    console.log(this.test);
-  }
+  constructor() {}
 }
