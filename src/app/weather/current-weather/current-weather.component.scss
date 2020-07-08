@@ -43,23 +43,18 @@ article {
   }
 }
 
-@media (max-width: 700px) {
+@media only screen and (max-width: 600px) {
   article {
-    margin-left: auto;
-    margin-right: auto;
-    width: 85%;
+    width: 90%;
+    min-width: auto;
 
     .main {
       flex-direction: column;
-      .left {
-        display: flex;
-        h3 {
-          padding-left: 0.5rem;
-        }
-      }
     }
+
     .details {
       ul {
+        flex-wrap: none;
         height: auto;
       }
     }

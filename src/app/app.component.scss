@@ -8,5 +8,23 @@ h1 {
   text-align: center;
 }
 
+ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: space-evenly;
+  li {
+    padding: 1rem;
+
+    &:hover {
+      background-color: aquamarine;
+    }
+  }
+}
+
+.turquoise {
+  background-color: turquoise;
+}
+
 app-weather {
 }

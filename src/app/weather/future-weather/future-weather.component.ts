@@ -53,5 +53,6 @@ export class FutureWeatherComponent {
   // ForecastClouds = (data) => data['clouds']['all'];
 
   ForecastWind = (data) => data['wind']['speed'];
+
   constructor() {}
 }
