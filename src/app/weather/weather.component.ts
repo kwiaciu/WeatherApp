@@ -14,26 +14,19 @@ export class WeatherComponent {
   currentWeatherData = null;
   forecastWeatherData = null;
   chosenBackground = null;
+  errorMessage = null; //TODO error message using form control and validation
   background = () => {
     this.chosenBackground = this.sanitizer.bypassSecurityTrustResourceUrl(
       this.backgroundURL[this.currentWeatherData['weather'][0]['icon']]
     );
-    console.log(this.chosenBackground);
-  };
-
-  handleErrors = (response) => {
-    console.log(response);
-    if (!response.ok) {
-      throw Error(response.statusText);
-    }
-    return response;
   };
 
   reset = () => {
-    console.log(this.currentWeatherData);
     this.location = '';
     this.currentWeatherData = null;
     this.forecastWeatherData = null;
+    this.chosenBackground = null;
+    this.errorMessage = null;
   };
 
   constructor(
@@ -46,11 +39,14 @@ export class WeatherComponent {
       .get(
         `https://api.openweathermap.org/data/2.5/weather?q=${this.location}&units=metric&appid=7bd0dc94a3212db6f91d5eb723443c2f`
       )
-      .subscribe((data) => {
-        this.currentWeatherData = { ...data };
-        this.background();
+      .subscribe({
+        next: (data) => {
+          this.currentWeatherData = { ...data };
+          this.background();
+        },
+        error: (err) => (this.errorMessage = err['error']['message']),
       });
-
+    console.log(this.errorMessage);
     this.httpClient
       .get(
         `https://api.openweathermap.org/data/2.5/forecast?q=${this.location}&units=metric&appid=7bd0dc94a3212db6f91d5eb723443c2f`

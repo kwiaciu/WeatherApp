@@ -6,6 +6,8 @@
     <mat-form-field class="">
       <mat-label for="input-city">City</mat-label>
       <input matInput [(ngModel)]="location" id="input-city" name="city" type="text">
+      <mat-hint *ngIf="errorMessage">{{errorMessage}}</mat-hint>
+
     </mat-form-field>
     <button (click)="handleSearch()" mat-stroked-button color="accent">Find</button>
   </form>
