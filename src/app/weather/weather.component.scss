@@ -38,6 +38,12 @@ button {
   z-index: -1;
   pointer-events: none;
   overflow: hidden;
+
+  .mat-spinner {
+    position: relative;
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+  }
 }
 .vimeo-wrapper iframe {
   width: 100vw;

@@ -1,5 +1,6 @@
 <div class="vimeo-wrapper">
-  <iframe *ngIf="currentWeatherData" [src]="chosenBackground" frameborder="0" allowfullscreen></iframe>
+  <iframe (load)="loaded()" *ngIf="currentWeatherData" [src]="chosenBackground" frameborder="0"
+    allowfullscreen></iframe>
 </div>
 <section class="app-wrapper" *ngIf="!currentWeatherData">
   <form class="entry" action="">
@@ -9,17 +10,20 @@
       <mat-hint *ngIf="errorMessage">{{errorMessage}}</mat-hint>
 
     </mat-form-field>
-    <button (click)="handleSearch()" mat-stroked-button color="accent">Find</button>
+    <button matRipple (click)="handleSearch()" mat-stroked-button color="accent">Find</button>
   </form>
 </section>
-<section>
+<section *ngIf="isLoaded">
   <button *ngIf="currentWeatherData" (click)="reset()" mat-stroked-button color="accent">Check another</button>
   <app-current-weather *ngIf="currentWeatherData" [potato]="currentWeatherData"></app-current-weather>
 </section>
-<section>
+<section *ngIf="isLoaded">
   <app-future-weather *ngIf="forecastWeatherData" [tomato]="forecastWeatherData">
   </app-future-weather>
 </section>
+<div class="vimeo-wrapper" *ngIf="!isLoaded && currentWeatherData">
+  <mat-spinner></mat-spinner>
+</div>
 
 <!-- https://api.openweathermap.org/data/2.5/weather?q=Wrocław&appid=7bd0dc94a3212db6f91d5eb723443c2f
  -->

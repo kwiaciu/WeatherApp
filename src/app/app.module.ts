@@ -13,6 +13,8 @@ import { CurrentWeatherComponent } from './weather/current-weather/current-weath
 import { FutureWeatherComponent } from './weather/future-weather/future-weather.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRippleModule } from '@angular/material/core';
 
 const routes: Routes = [
   {
@@ -46,6 +48,8 @@ const routes: Routes = [
     MatButtonModule,
     MatFormFieldModule,
     HttpClientModule,
+    MatProgressSpinnerModule,
+    MatRippleModule,
     RouterModule.forRoot(routes),
   ],
   providers: [],

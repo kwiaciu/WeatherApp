@@ -15,10 +15,15 @@ export class WeatherComponent {
   forecastWeatherData = null;
   chosenBackground = null;
   errorMessage = null; //TODO error message using form control and validation
+  isLoaded = false;
   background = () => {
     this.chosenBackground = this.sanitizer.bypassSecurityTrustResourceUrl(
       this.backgroundURL[this.currentWeatherData['weather'][0]['icon']]
     );
+  };
+
+  loaded = () => {
+    this.isLoaded = true;
   };
 
   reset = () => {
@@ -27,6 +32,7 @@ export class WeatherComponent {
     this.forecastWeatherData = null;
     this.chosenBackground = null;
     this.errorMessage = null;
+    this.isLoaded = false;
   };
 
   constructor(
