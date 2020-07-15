@@ -2,7 +2,7 @@
   <iframe (load)="loaded()" *ngIf="currentWeatherData" [src]="chosenBackground" frameborder="0"
     allowfullscreen></iframe>
 </div>
-<section class="app-wrapper" *ngIf="!currentWeatherData" [@simpleFadeAnimation]="'in'">
+<section class="app-wrapper" *ngIf="!currentWeatherData" [@simpleFade]="'in'">
   <form class="entry" action="">
     <mat-form-field class="">
       <mat-label for="input-city">City</mat-label>
