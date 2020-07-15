@@ -2,7 +2,7 @@
   <iframe (load)="loaded()" *ngIf="currentWeatherData" [src]="chosenBackground" frameborder="0"
     allowfullscreen></iframe>
 </div>
-<section class="app-wrapper" *ngIf="!currentWeatherData">
+<section class="app-wrapper" *ngIf="!currentWeatherData" [@simpleFadeAnimation]="'in'">
   <form class="entry" action="">
     <mat-form-field class="">
       <mat-label for="input-city">City</mat-label>
@@ -21,7 +21,7 @@
   <app-future-weather *ngIf="forecastWeatherData" [tomato]="forecastWeatherData">
   </app-future-weather>
 </section>
-<div class="vimeo-wrapper" *ngIf="!isLoaded && currentWeatherData">
+<div class="overlay" *ngIf="!isLoaded && currentWeatherData" [@delayedFade]="'open'">
   <mat-spinner></mat-spinner>
 </div>
 

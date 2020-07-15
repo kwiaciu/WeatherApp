@@ -2,11 +2,31 @@ import { Component } from '@angular/core';
 import { backgrounds } from './backgrounds';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
 
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.scss'],
+  animations: [
+    trigger('simpleFade', [
+      state('in', style({ opacity: 1 })),
+      transition(':enter', [style({ opacity: 0 }), animate(600)]),
+      transition(':leave', animate(600, style({ opacity: 0 }))),
+    ]),
+    trigger('delayedFade', [
+      state('open', style({ opacity: 1 })),
+      transition(':enter', [style({ opacity: 0 }), animate(200)]),
+      transition(':leave', animate('1s 1.5s ease', style({ opacity: 0 }))),
+    ]),
+  ],
 })
 export class WeatherComponent {
   location = '';
